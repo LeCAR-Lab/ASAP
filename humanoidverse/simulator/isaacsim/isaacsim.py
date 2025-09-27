@@ -6,27 +6,27 @@ from humanoidverse.utils.torch_utils import to_torch, torch_rand_float
 import numpy as np
 from humanoidverse.simulator.base_simulator.base_simulator import BaseSimulator
 # from humanoidverse.simulator.isaaclab_cfg import IsaacLabCfg
-from omni.isaac.lab.sim import SimulationContext
-from omni.isaac.lab.sim import PhysxCfg, SimulationCfg
-from omni.isaac.lab.scene import InteractiveSceneCfg
-from omni.isaac.lab.scene import InteractiveScene
-from omni.isaac.lab.utils.timer import Timer
+from isaaclab.sim import SimulationContext
+from isaaclab.sim import PhysxCfg, SimulationCfg
+from isaaclab.scene import InteractiveSceneCfg
+from isaaclab.scene import InteractiveScene
+from isaaclab.utils.timer import Timer
 
-from omni.isaac.lab.assets import Articulation
-from omni.isaac.lab.sensors import ContactSensor, RayCaster
-from omni.isaac.lab.actuators import IdealPDActuatorCfg, ImplicitActuatorCfg
-from omni.isaac.lab.sensors import ContactSensorCfg, RayCasterCfg, patterns
-from omni.isaac.lab.assets import ArticulationCfg
-from omni.isaac.lab.terrains import TerrainImporterCfg
-from omni.isaac.lab.terrains.config.rough import ROUGH_TERRAINS_CFG
-from omni.isaac.lab.terrains import TerrainGeneratorCfg
-import omni.isaac.lab.terrains as terrain_gen
+from isaaclab.assets import Articulation
+from isaaclab.sensors import ContactSensor, RayCaster
+from isaaclab.actuators import IdealPDActuatorCfg, ImplicitActuatorCfg
+from isaaclab.sensors import ContactSensorCfg, RayCasterCfg, patterns
+from isaaclab.assets import ArticulationCfg
+from isaaclab.terrains import TerrainImporterCfg
+from isaaclab.terrains.config.rough import ROUGH_TERRAINS_CFG
+from isaaclab.terrains import TerrainGeneratorCfg
+import isaaclab.terrains as terrain_gen
 
-from omni.isaac.lab_assets import H1_CFG
-from omni.isaac.lab.utils.assets import ISAACLAB_NUCLEUS_DIR
-from omni.isaac.lab.envs import ViewerCfg
+from isaaclab_assets import H1_CFG
+from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
+from isaaclab.envs import ViewerCfg
 
-import omni.isaac.lab.sim as sim_utils
+import isaaclab.sim as sim_utils
 
 from humanoidverse.simulator.isaacsim.isaaclab_viewpoint_camera_controller import ViewportCameraController
 import builtins
@@ -36,12 +36,12 @@ from humanoidverse.simulator.isaacsim.isaacsim_articulation_cfg import ARTICULAT
 
 from humanoidverse.simulator.isaacsim.event_cfg import EventCfg
 
-from omni.isaac.lab.managers import EventManager
+from isaaclab.managers import EventManager
 
-from omni.isaac.lab.managers import EventTermCfg as EventTerm
+from isaaclab.managers import EventTermCfg as EventTerm
 
-from omni.isaac.lab.managers import SceneEntityCfg
-import omni.isaac.lab.envs.mdp as mdp
+from isaaclab.managers import SceneEntityCfg
+import isaaclab.envs.mdp as mdp
 from humanoidverse.simulator.isaacsim.events import randomize_body_com
 
 class IsaacSim(BaseSimulator):
@@ -250,7 +250,7 @@ class IsaacSim(BaseSimulator):
         asset_root = self.robot_config.asset.asset_root
         asset_path = self.robot_config.asset.usd_file
         # prapare to override the spawn configuration in HumanoidVerse/humanoidverse/simulator/isaacsim_articulation_cfg.py
-        from omni.isaac.lab.utils.assets import ISAACLAB_NUCLEUS_DIR
+        from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
         spawn=sim_utils.UsdFileCfg(
             usd_path=os.path.join(asset_root, asset_path),
             # usd_path=f"{ISAACLAB_NUCLEUS_DIR}/Robots/Unitree/H1/h1.usd",

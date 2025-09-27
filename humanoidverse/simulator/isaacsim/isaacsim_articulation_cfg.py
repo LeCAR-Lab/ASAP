@@ -1,8 +1,8 @@
 
-import omni.isaac.lab.sim as sim_utils
-from omni.isaac.lab.actuators import ActuatorNetMLPCfg, DCMotorCfg, ImplicitActuatorCfg
-from omni.isaac.lab.assets.articulation import ArticulationCfg
-from omni.isaac.lab.utils.assets import ISAACLAB_NUCLEUS_DIR
+import isaaclab.sim as sim_utils
+from isaaclab.actuators import ActuatorNetMLPCfg, DCMotorCfg, ImplicitActuatorCfg
+from isaaclab.assets.articulation import ArticulationCfg
+from isaaclab.utils.assets import ISAACLAB_NUCLEUS_DIR
 
 ARTICULATION_CFG = ArticulationCfg(
     spawn=sim_utils.UsdFileCfg(

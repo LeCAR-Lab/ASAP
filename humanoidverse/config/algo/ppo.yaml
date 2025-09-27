@@ -25,7 +25,8 @@ algo:
 
     init_noise_std: 0.8
 
-    num_learning_iterations: 1000000
+    # num_learning_iterations: 1000000
+    num_learning_iterations: 10000
     init_at_random_ep_len: True
     eval_callbacks: null
 

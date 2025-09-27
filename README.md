@@ -212,7 +212,7 @@ Train a phase-based motion tracking policy to imitate Cristiano Ronaldo's signat
 
 ```bash
 python humanoidverse/train_agent.py \
-+simulator=isaacgym \
++simulator=isaacsim \
 +exp=motion_tracking \
 +domain_rand=NO_domain_rand \
 +rewards=motion_tracking/reward_motion_tracking_dm_2real \

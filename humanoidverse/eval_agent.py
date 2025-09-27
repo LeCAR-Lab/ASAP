@@ -105,7 +105,7 @@ def main(override_config: OmegaConf):
             
     simulator_type = config.simulator['_target_'].split('.')[-1]
     if simulator_type == 'IsaacSim':
-        from omni.isaac.lab.app import AppLauncher
+        from isaaclab.app import AppLauncher
         import argparse
         parser = argparse.ArgumentParser(description="Evaluate an RL agent with RSL-RL.")
         AppLauncher.add_app_launcher_args(parser)

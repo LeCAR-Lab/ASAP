@@ -19,16 +19,16 @@ from __future__ import annotations
 import os
 import torch
 
-import omni.isaac.lab.sim as sim_utils
-from omni.isaac.lab.actuators import IdealPDActuatorCfg
-from omni.isaac.lab.assets import ArticulationCfg
-from omni.isaac.lab.envs import DirectRLEnvCfg
-from omni.isaac.lab.scene import InteractiveSceneCfg
-from omni.isaac.lab.sensors import ContactSensorCfg, RayCasterCfg, patterns
-from omni.isaac.lab.sim import PhysxCfg, SimulationCfg
-from omni.isaac.lab.terrains import TerrainImporterCfg
-from omni.isaac.lab.utils import configclass
-from omni.isaac.lab_assets import H1_CFG
+import isaaclab.sim as sim_utils
+from isaaclab.actuators import IdealPDActuatorCfg
+from isaaclab.assets import ArticulationCfg
+from isaaclab.envs import DirectRLEnvCfg
+from isaaclab.scene import InteractiveSceneCfg
+from isaaclab.sensors import ContactSensorCfg, RayCasterCfg, patterns
+from isaaclab.sim import PhysxCfg, SimulationCfg
+from isaaclab.terrains import TerrainImporterCfg
+from isaaclab.utils import configclass
+from isaaclab_assets import H1_CFG
 
 # from humanoidverse.envs.base_task.events import OmniH2OEventCfg, OmniH2OPlayEventCfg, OmniH2OTrainEventCfg
 # from humanoidverse.envs.base_task.modes import OmniH2OModes

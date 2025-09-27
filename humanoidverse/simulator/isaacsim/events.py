@@ -4,12 +4,12 @@ import numpy as np
 import torch
 from typing import TYPE_CHECKING, Literal
 
-import omni.isaac.lab.envs.mdp as mdp
-import omni.isaac.lab.utils.math as math_utils
-from omni.isaac.lab.assets import Articulation, RigidObject
-from omni.isaac.lab.managers import SceneEntityCfg
+import isaaclab.envs.mdp as mdp
+import isaaclab.utils.math as math_utils
+from isaaclab.assets import Articulation, RigidObject
+from isaaclab.managers import SceneEntityCfg
 
-from omni.isaac.lab.envs import ManagerBasedEnv
+from isaaclab.envs import ManagerBasedEnv
 
 def resolve_dist_fn(
     distribution: Literal["uniform", "log_uniform", "gaussian"] = "uniform",
