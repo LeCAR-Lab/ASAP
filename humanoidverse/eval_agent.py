@@ -131,11 +131,12 @@ def main(override_config: OmegaConf):
 
     pre_process_config(config)
 
-    # use config.device if specified, otherwise use cuda if available
+    # use config.device if specified, otherwise use xpu or cuda if available
+    from humanoidverse.utils.device import resolve_device
     if config.get("device", None):
         device = config.device
     else:
-        device = "cuda:0" if torch.cuda.is_available() else "cpu"
+        device = resolve_device()
 
     eval_log_dir = Path(config.eval_log_dir)
     eval_log_dir.mkdir(parents=True, exist_ok=True)
