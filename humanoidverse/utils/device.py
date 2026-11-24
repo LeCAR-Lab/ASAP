@@ -1,4 +1,4 @@
-"""Device selection helpers: Intel XPU first, then CUDA, then CPU."""
+"""Device selection helpers: CUDA first, then Intel XPU, then CPU."""
 
 import torch
 
@@ -10,8 +10,8 @@ def is_available(backend):
 
 
 def default_device_type():
-    """Return "xpu" if an Intel XPU is present, else "cuda" if available, else "cpu"."""
-    for backend in ("xpu", "cuda"):
+    """Return "cuda" if available, else "xpu" if an Intel XPU is present, else "cpu"."""
+    for backend in ("cuda", "xpu"):
         if is_available(backend):
             return backend
     return "cpu"

@@ -19,10 +19,15 @@ def fake_hosts(xpu=False, cuda=False):
 
 
 class DeviceSelectionTest(unittest.TestCase):
-    def test_xpu_is_preferred(self):
-        with fake_hosts(xpu=True, cuda=True):
+    def test_xpu_host(self):
+        with fake_hosts(xpu=True):
             self.assertEqual(device_utils.default_device_type(), "xpu")
             self.assertEqual(device_utils.resolve_device(), "xpu:0")
+
+    def test_cuda_is_kept_when_both_are_present(self):
+        with fake_hosts(xpu=True, cuda=True):
+            self.assertEqual(device_utils.default_device_type(), "cuda")
+            self.assertEqual(device_utils.resolve_device(), "cuda:0")
 
     def test_cuda_host_is_unchanged(self):
         with fake_hosts(cuda=True):

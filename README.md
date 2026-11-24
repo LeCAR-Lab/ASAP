@@ -244,18 +244,20 @@ This is the visualization of the policy after traning 5800 iters. The policy is 
 <img src="imgs/motion_tracking_5800.gif" width="400px"/>
 
 
-### How to run the same on Intel's XPU
+### Run on Intel GPU (XPU)
 
-The policy network of `humanoidverse/eval_agent.py` runs on an Intel XPU. Install the XPU build of PyTorch instead of a CUDA build, then install the rest as above:
+The policy network runs on an Intel GPU with the XPU build of PyTorch. Those wheels are not published for Python 3.8, so use a separate environment with a newer Python than the IsaacGym one above:
 ```bash
+python3 -m venv .venv-xpu && source .venv-xpu/bin/activate
 pip install torch torchvision --index-url https://download.pytorch.org/whl/xpu
+pip install onnx onnxruntime omegaconf pytest
 ```
-Without `device=...`, `eval_agent.py` now picks an XPU first, then CUDA, then the CPU. To choose one, add `device=xpu:0` (use `ZE_AFFINITY_MASK=0` where you would use `CUDA_VISIBLE_DEVICES=0`). The exported ONNX policies in `sim2real/models` can be compared with the same weights run as PyTorch modules on the XPU:
+Check the released ONNX policies in `sim2real/models` against the same weights run as PyTorch modules on the XPU:
 ```bash
 python tests/check_onnx_policy_parity.py --device xpu
 python -m pytest tests/test_device.py
 ```
-The simulators (IsaacGym, IsaacSim) and the `sim2real` deployment, which uses `onnxruntime` on the CPU, are not changed and stay CUDA-only or CPU-only.
+`humanoidverse/eval_agent.py` uses CUDA when it is available, then an Intel XPU, then the CPU; add `device=xpu` to choose the XPU. IsaacGym and IsaacSim stay CUDA-only, and the `sim2real` deployment runs the ONNX policies with `onnxruntime` on the CPU, unchanged.
 
 # ASAP delta action model training
 
