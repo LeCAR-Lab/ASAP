@@ -244,6 +244,21 @@ This is the visualization of the policy after traning 5800 iters. The policy is 
 <img src="imgs/motion_tracking_5800.gif" width="400px"/>
 
 
+### Run on Intel GPU (XPU)
+
+The policy network runs on an Intel GPU with the XPU build of PyTorch. Those wheels are not published for Python 3.8, so use a separate environment with a newer Python than the IsaacGym one above:
+```bash
+python3 -m venv .venv-xpu && source .venv-xpu/bin/activate
+pip install torch torchvision --index-url https://download.pytorch.org/whl/xpu
+pip install onnx onnxruntime omegaconf pytest
+```
+Check the released ONNX policies in `sim2real/models` against the same weights run as PyTorch modules on the XPU:
+```bash
+python tests/check_onnx_policy_parity.py --device xpu
+python -m pytest tests/test_device.py
+```
+`humanoidverse/eval_agent.py` uses CUDA when it is available, then an Intel XPU, then the CPU; add `device=xpu` to choose the XPU. IsaacGym and IsaacSim stay CUDA-only, and the `sim2real` deployment runs the ONNX policies with `onnxruntime` on the CPU, unchanged.
+
 # ASAP delta action model training
 
 Note that the only difference between the delta action model training and naive motion tracking training is that delta action model needs a motion file with extra keyname `"action"` in the motion file, so that the resulting RL policy we are training is able to use the delta action model to `"control the robot"` to match the real-world/sim2sim motions.
